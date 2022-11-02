@@ -68,7 +68,7 @@ const projects = {
 
 function Menu(){
 
-    
+    let viewMore = false;
     
     let currentState = 0;
     let scene = new THREE.Scene();
@@ -121,9 +121,9 @@ function Menu(){
     }
 
 
+    let initialPosition = [0, -1, 5];
 
-    camera.position.z = 5;
-    camera.position.y = -1;
+    camera.position.set(initialPosition[0], initialPosition[1], initialPosition[2]);
     // set camera to look at 0 0 0
     camera.lookAt(0, 0, 0);
     
@@ -206,13 +206,10 @@ function Menu(){
         }
         , 2000);
 
-        // move camera
-        let old = camera.position.x;
-        // move camera slowly
         let goal = 20 * currentState;
         console.log(goal);
         let interval = setInterval(() => {
-            camera.position.x -= 0.05;
+            camera.position.x -= 0.1;
             if (Math.abs(camera.position.x - goal) < 0.2) {
                 clearInterval(interval);
             }
@@ -244,6 +241,86 @@ function Menu(){
         slideRight();
         // console.log(state);
     }
+
+
+    function exploreContent(){
+        let dist_goal = initialPosition[2] - 20;
+        let angle_goal = Math.PI / 2;
+        let interval = setInterval(() => {
+            camera.position.z -= 0.1;
+            // console.log(camera.rotation.y);
+            // console.log(angle_goal);
+            if (Math.abs(camera.rotation.x - angle_goal) < 0.2){
+                // do nothing
+            }
+            else{
+                camera.rotation.x += 0.01;
+                if (camera.rotation.x > 2 * Math.PI) {
+                    camera.rotation.x = 0;
+                }
+            }
+            if (Math.abs(camera.position.z - dist_goal) < 0.2) {
+                clearInterval(interval);
+            }
+        }
+        , 10);
+    }
+
+    function goBack(){
+        let dist_goal = initialPosition[2];
+        let angle_goal = 0;
+        let interval = setInterval(() => {
+            camera.position.z += 0.1;
+            // console.log(camera.rotation.y);
+            // console.log(angle_goal);
+            if (Math.abs(camera.rotation.x - angle_goal) < 0.2){
+                // do nothing
+            }
+            else{
+                camera.rotation.x -= 0.01;
+                if (camera.rotation.x < 0) {
+                    camera.rotation.x = 2 * Math.PI;
+                }
+            }
+            if (Math.abs(camera.position.z - dist_goal) < 0.2) {
+                clearInterval(interval);
+            }
+        }
+        , 10);
+    }
+
+    // Key listener
+    document.addEventListener('keydown', (event) => {
+        const keyName = event.key;
+        if (keyName === 'ArrowRight') {
+            currentState += 1;
+            if (currentState > projects.projects.length - 1){
+                currentState = 0;
+            }
+            console.log(currentState);
+            slideRight();
+        }
+        if (keyName === 'ArrowLeft') {
+            currentState -= 1;
+            if (currentState < 0){
+                currentState = projects.projects.length - 1;
+            }
+            slideLeft();
+        }
+
+        if (keyName === 'Enter') {
+            console.log('enter');
+            if (viewMore === false) {
+                viewMore = true;
+                exploreContent();
+            }
+            else {
+                goBack();
+                viewMore = false;
+            }
+        }
+    });
+
 
     const animate = function () {
         requestAnimationFrame( animate );
