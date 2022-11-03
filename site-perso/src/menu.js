@@ -276,12 +276,13 @@ function Menu(){
         let left = document.getElementById('left');
         let right = document.getElementById('right');
         let tip = document.getElementById('tip');
-        text.style = 'opacity: 1; transition: 1s; width: 100%; height: 100%;';
+
+        text.style = 'font-size: 2rem; background-color: transparent; margin-top: 10%;';
         description.style = 'opacity: 1; transition: 1s; width: 100%; height: 100%;';
-        left.style = 'opacity: 1; transition: 1s;';
-        right.style = 'opacity: 1; transition: 1s;';
+        left.style = 'position: absolute; top: 50%; left: 10%; transform: translate(-50%, -50%); background-color: transparent; color: white; font-size: 2rem; border: none; outline: none;';
+        right.style = 'position: absolute; top: 50%; right: 10%; transform: translate(50%, -50%); background-color: transparent; color: white; font-size: 2rem; border: none; outline: none;';    
         tip.style = 'opacity: 1; transition: 1s;';
-        title.style = 'opacity: 1; transition: 1s;';
+        title.style = 'position: absolute; top: 10%; left: 50%; transform: translate(-50%,-50%); font-size: "3rem";';
 
     }
 
@@ -355,9 +356,7 @@ function Menu(){
             viewMore = false;
             // remove div with id main
             let main = document.getElementById('main');
-            if (main){
-                main.remove();
-            }
+            main.remove();
             // resize terminal
             let terminal = document.getElementById('terminal');
             terminal.style = 'position: absolute; top: 70%; left: 30%; width: 40vw; height: 30vh; background-color: rgba(50, 50, 50, 0.5); color: white; font-family: monospace; font-size: 1rem; z-index: 100; text-align: center; transition: 1s;';
@@ -544,12 +543,12 @@ function Menu(){
                 <button id="exitButton" style={{ position: "absolute", top: "50%", left: "90%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }} onClick={exitTerminal}>X</button> 
             </div>
             <div id='terminal-content' className='terminal-content'>
-                <p style={{ color: "0x00ff00 !important", fontSize: "2rem", backgroundColor: "transparent", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
-                <p style={{ color: "0x00ff00 !important", fontSize: "1rem", backgroundColor: "transparent" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
+                <p style={{ fontSize: "2rem", backgroundColor: "transparent", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
+                <p style={{ fontSize: "1rem", backgroundColor: "transparent" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
             </div>
         </div>
         <div id="tip" className='tip'>
-            <p style={{ color: "0x00ff00 !important", fontSize: "1rem", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "transparent" }}>Press Enter to learn more</p>
+            <p style={{ fontSize: "1rem", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "transparent" }}>Press Enter to learn more</p>
         </div>
         </>
     );
