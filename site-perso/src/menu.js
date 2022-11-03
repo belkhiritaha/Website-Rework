@@ -9,7 +9,7 @@ const projects = {
     projects: [
         {
             name: "Fact Checker",
-            description: "A python program that checks if a given statement is true or false.",
+            description: "A python program that checks if a given statement is true or false. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc.",
             path: "http://localhost:8000/models/checkmark.obj",
             scale: 0.25,
             rotation: [0, 0, 0]
@@ -151,6 +151,8 @@ function Menu(){
     // add left and right buttons
     const left = document.createElement('button');
     const right = document.createElement('button');
+    left.id = 'left';
+    right.id = 'right';
     left.innerHTML = '<';
     right.innerHTML = '>';
     left.style = 'position: absolute; top: 50%; left: 10%; transform: translate(-50%, -50%); background-color: transparent; color: white; font-size: 2rem; border: none; outline: none;';
@@ -243,6 +245,25 @@ function Menu(){
     }
 
 
+    function hideElements(){
+        let text = document.getElementById('text');
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let terminal = document.getElementById('terminal');
+        let left = document.getElementById('left');
+        let right = document.getElementById('right');
+        let tip = document.getElementById('tip');
+        text.style = 'opacity: 0; transition: 1s;';
+        description.style = 'opacity: 0; transition: 1s;';
+        left.style = 'opacity: 0; transition: 1s;';
+        right.style = 'opacity: 0; transition: 1s;';
+        tip.style = 'opacity: 0; transition: 1s;';
+        title.style = 'opacity: 0; transition: 1s;';
+
+        terminal.style = 'width: 80vw; height: 80vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 1s;';
+    }
+
+
     function exploreContent(){
         let dist_goal = initialPosition[2] - 20;
         let angle_goal = Math.PI / 2;
@@ -264,6 +285,7 @@ function Menu(){
             }
         }
         , 10);
+        hideElements();
     }
 
     function goBack(){
@@ -358,6 +380,13 @@ function Menu(){
                     background-color: black;
                 }
                 
+
+                html, body {
+                    margin: 0;
+                    height: 100%;
+                    overflow: hidden;
+                }
+
                 body::after {
                     content: "";
                     position: absolute;
@@ -389,8 +418,34 @@ function Menu(){
                     color: white;
                     font-family: monospace;
                     font-size: 1rem;
-                    overflow: hidden;
                     z-index: 100;
+                }
+
+                .terminal-content {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    overflow: auto;
+                    overflow-y: scroll;
+                }
+
+                .terminal-content::-webkit-scrollbar {
+                    width: 0.5rem;
+                    background-color: rgba(50, 50, 50, 0.5);
+                }
+
+                .terminal-content::-webkit-scrollbar-thumb {
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+
+                .terminal-content::-webkit-scrollbar-thumb:hover {
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
+
+                .terminal-content::-webkit-scrollbar-track {
+                    background-color: rgba(50, 50, 50, 0.5);
                 }
 
                 .terminal-top {
@@ -426,15 +481,17 @@ function Menu(){
 
         <h1 style={{ position: "absolute", top: "10%", left: "50%", transform: "translate(-50%,-50%)", fontSize: "3rem" }} id="title">Projects<span className='blink'>_</span></h1>
 
-        <div className='terminal'>
+        <div id='terminal' className='terminal'>
             <div className='terminal-top'>
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>Terminal</div>
                 <button style={{ position: "absolute", top: "50%", left: "90%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }}>X</button> 
             </div>
-            <p style={{ color: "0x00ff00 !important", fontSize: "2rem", position: "absolute", top: "30%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "transparent" }} id="text">{projects.projects[currentState].name}</p>
-            <p style={{ color: "0x00ff00 !important", fontSize: "1rem", position: "absolute", top: "55%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "transparent" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
+            <div className='terminal-content'>
+                <p style={{ color: "0x00ff00 !important", fontSize: "2rem", backgroundColor: "transparent", marginLeft: "35%", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
+                <p style={{ color: "0x00ff00 !important", fontSize: "1rem", backgroundColor: "transparent", marginLeft: "3%" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
+            </div>
         </div>
-        <div className='tip'>
+        <div id="tip" className='tip'>
             <p style={{ color: "0x00ff00 !important", fontSize: "1rem", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "transparent" }}>Press Enter to learn more</p>
         </div>
         </>
