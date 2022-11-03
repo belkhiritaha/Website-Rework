@@ -4,6 +4,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import MoreWebsite from './moreWebsite';
 
 const projects = {
     projects: [
@@ -69,7 +70,7 @@ const projects = {
 function Menu(){
 
     let viewMore = false;
-    
+    let inAnimation = 0; 
     let currentState = 0;
     let scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -181,9 +182,11 @@ function Menu(){
         let goal = 20 * currentState;
         // move camera slowly
         let interval = setInterval(() => {
+            inAnimation = 1;
             camera.position.x += 0.1;
             if (Math.abs(camera.position.x - goal) < 0.2) {
                 clearInterval(interval);
+                inAnimation = 0;
             }
             if (camera.position.x > 20 * (projects.projects.length )) {
                 camera.position.x = 0;
@@ -211,9 +214,11 @@ function Menu(){
         let goal = 20 * currentState;
         console.log(goal);
         let interval = setInterval(() => {
+            inAnimation = 1;
             camera.position.x -= 0.1;
             if (Math.abs(camera.position.x - goal) < 0.2) {
                 clearInterval(interval);
+                inAnimation = 0;
             }
             if (camera.position.x < 0) {
                 camera.position.x = 20 * (projects.projects.length);
@@ -243,7 +248,7 @@ function Menu(){
         slideRight();
         // console.log(state);
     }
-
+    
 
     function hideElements(){
         let text = document.getElementById('text');
@@ -253,8 +258,8 @@ function Menu(){
         let left = document.getElementById('left');
         let right = document.getElementById('right');
         let tip = document.getElementById('tip');
-        text.style = 'opacity: 0; transition: 1s;';
-        description.style = 'opacity: 0; transition: 1s;';
+        text.style = 'opacity: 0; transition: 1s; width: 0; height: 0;';
+        description.style = 'opacity: 0; transition: 1s; width: 0; height: 0;';
         left.style = 'opacity: 0; transition: 1s;';
         right.style = 'opacity: 0; transition: 1s;';
         tip.style = 'opacity: 0; transition: 1s;';
@@ -263,11 +268,39 @@ function Menu(){
         terminal.style = 'width: 80vw; height: 80vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 1s;';
     }
 
+    function showElements(){
+        let text = document.getElementById('text');
+        let title = document.getElementById('title');
+        let description = document.getElementById('description');
+        let terminal = document.getElementById('terminal');
+        let left = document.getElementById('left');
+        let right = document.getElementById('right');
+        let tip = document.getElementById('tip');
+        text.style = 'opacity: 1; transition: 1s; width: 100%; height: 100%;';
+        description.style = 'opacity: 1; transition: 1s; width: 100%; height: 100%;';
+        left.style = 'opacity: 1; transition: 1s;';
+        right.style = 'opacity: 1; transition: 1s;';
+        tip.style = 'opacity: 1; transition: 1s;';
+        title.style = 'opacity: 1; transition: 1s;';
+
+    }
+
+
+    function displayWebsite(){
+        let main = MoreWebsite();
+    
+        let terminal = document.getElementById('terminal-content');
+        terminal.appendChild(main);
+
+        console.log(main);
+    }
+
 
     function exploreContent(){
         let dist_goal = initialPosition[2] - 20;
         let angle_goal = Math.PI / 2;
         let interval = setInterval(() => {
+            inAnimation = 1;
             camera.position.z -= 0.1;
             // console.log(camera.rotation.y);
             // console.log(angle_goal);
@@ -282,16 +315,19 @@ function Menu(){
             }
             if (Math.abs(camera.position.z - dist_goal) < 0.2) {
                 clearInterval(interval);
+                inAnimation = 0;
             }
         }
         , 10);
         hideElements();
+        displayWebsite();
     }
 
     function goBack(){
         let dist_goal = initialPosition[2];
         let angle_goal = 0;
         let interval = setInterval(() => {
+            inAnimation = 1;
             camera.position.z += 0.1;
             // console.log(camera.rotation.y);
             // console.log(angle_goal);
@@ -306,39 +342,59 @@ function Menu(){
             }
             if (Math.abs(camera.position.z - dist_goal) < 0.2) {
                 clearInterval(interval);
+                inAnimation = 0;
             }
         }
         , 10);
+        console.log(camera.position.z);
     }
+
+    function exitTerminal(){
+        if (viewMore && inAnimation == 0){
+            goBack();
+            viewMore = false;
+            // remove div with id main
+            let main = document.getElementById('main');
+            if (main){
+                main.remove();
+            }
+            // resize terminal
+            let terminal = document.getElementById('terminal');
+            terminal.style = 'position: absolute; top: 70%; left: 30%; width: 40vw; height: 30vh; background-color: rgba(50, 50, 50, 0.5); color: white; font-family: monospace; font-size: 1rem; z-index: 100; text-align: center; transition: 1s;';
+            showElements();
+        }
+    }  
 
     // Key listener
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
-        if (keyName === 'ArrowRight') {
-            currentState += 1;
-            if (currentState > projects.projects.length - 1){
-                currentState = 0;
+        if (inAnimation == 0){
+            if (keyName === 'ArrowRight') {
+                currentState += 1;
+                if (currentState > projects.projects.length - 1){
+                    currentState = 0;
+                }
+                console.log(currentState);
+                slideRight();
             }
-            console.log(currentState);
-            slideRight();
-        }
-        if (keyName === 'ArrowLeft') {
-            currentState -= 1;
-            if (currentState < 0){
-                currentState = projects.projects.length - 1;
+            if (keyName === 'ArrowLeft') {
+                currentState -= 1;
+                if (currentState < 0){
+                    currentState = projects.projects.length - 1;
+                }
+                slideLeft();
             }
-            slideLeft();
-        }
-
-        if (keyName === 'Enter') {
-            console.log('enter');
-            if (viewMore === false) {
-                viewMore = true;
-                exploreContent();
-            }
-            else {
-                goBack();
-                viewMore = false;
+    
+            if (keyName === 'Enter') {
+                console.log('enter');
+                if (viewMore === false) {
+                    viewMore = true;
+                    exploreContent();
+                }
+                else {
+                    exitTerminal();
+                    viewMore = false;
+                }
             }
         }
     });
@@ -392,7 +448,7 @@ function Menu(){
                     position: absolute;
                     top: 0;
                     left: 0;
-                    width: 99vw;
+                    width: 100vw;
                     height: 100vh;
                     background: repeating-linear-gradient(#0000004b, #0000004b 1px, transparent 2px, transparent 5px);
                     z-index: 10;
@@ -419,6 +475,7 @@ function Menu(){
                     font-family: monospace;
                     font-size: 1rem;
                     z-index: 100;
+                    text-align: center;
                 }
 
                 .terminal-content {
@@ -484,11 +541,11 @@ function Menu(){
         <div id='terminal' className='terminal'>
             <div className='terminal-top'>
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>Terminal</div>
-                <button style={{ position: "absolute", top: "50%", left: "90%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }}>X</button> 
+                <button id="exitButton" style={{ position: "absolute", top: "50%", left: "90%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }} onClick={exitTerminal}>X</button> 
             </div>
-            <div className='terminal-content'>
-                <p style={{ color: "0x00ff00 !important", fontSize: "2rem", backgroundColor: "transparent", marginLeft: "35%", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
-                <p style={{ color: "0x00ff00 !important", fontSize: "1rem", backgroundColor: "transparent", marginLeft: "3%" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
+            <div id='terminal-content' className='terminal-content'>
+                <p style={{ color: "0x00ff00 !important", fontSize: "2rem", backgroundColor: "transparent", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
+                <p style={{ color: "0x00ff00 !important", fontSize: "1rem", backgroundColor: "transparent" }} id="description">{projects.projects[currentState].description}<span className='blink'>_</span></p>            
             </div>
         </div>
         <div id="tip" className='tip'>
