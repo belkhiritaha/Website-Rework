@@ -3,7 +3,7 @@ body::after {
     position: absolute;
     top: 0;
     left: 0;
-    width: 99vw;
+    width: 100vw;
     height: 100vh;
     background: repeating-linear-gradient(#0000004b, #0000004b 1px, transparent 2px, transparent 5px);
     z-index: -1;
