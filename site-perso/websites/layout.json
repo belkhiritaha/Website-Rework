@@ -1,0 +1,51 @@
+{
+    "websites": [
+        {
+            "title": "Fact Checker",
+            "layout": [
+                0,
+                1,
+                0,
+                2,
+                0,
+                1,
+                0,
+                2,
+                0,
+                0,
+                2,
+                1,
+                0,
+                2,
+                1,
+                0,
+                2,
+                0,
+                3,
+                0
+            ],
+            "content": [
+                "A program that checks if an information is fake or not",
+                "CONCEPT",
+                "Given a statement that illustrates a relationship between two entities, the program checks if the statement is true or false. It does so by building a knowledge graph, and looking for the shortest path between the two entities. A rather long path corresponds to a false statement, while a short path corresponds to a true statement.",
+                "../img/Figure-2-example-of-a-knowledge-graph.png",
+                "On the example we can see that Barack Obama is directly linked to Michelle Obama, therefore, any statement directly linking those two entities is likely to be true.",
+                "ALGORITHM",
+                "We start with the statement's first entity as the first node to our graph. We then make SQL queries from the Wikidata database to get all the entities that are linked to our first entity. We have now built a fist layer of entities that surrounds our first node.",
+                "../img/1stlayer.png",
+                "We reiterate this process for the stqtement's second entity, and we get a second layer of entities surrounding our second node. We reiterate this process for all the nodes on the first layer of entities, second layer, third... until the two separate graphs we're building connect. This process is not garanteed to terminate, so we must set a limit on the number of iterations upon which, we can say that the statement is likely to be false, since there is no obvious link between the two entities.",
+                "The resulting knowledge graph looks like this:",
+                "../img/kg.png",
+                "SHORTEST PATH",
+                "In this graph, we look for the shortest path that connects the two entities. And given the weight of each edge, we can calculate the Truth Value of the statement.",
+                "../img/pathexmpl.png",
+                "TRUTH VALUE",
+                "The Truth Value of a statement is defined as such:",
+                "../img/truthvalue.png",
+                "Where K is a calibration function, and N is the paths length (sum of nodes weights)",
+                ["../img/25231.png", "github.com/belkhiritaha/Fact-checker"],
+                "(Source code)"
+            ]
+        }
+    ]
+}

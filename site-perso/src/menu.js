@@ -10,7 +10,7 @@ const projects = {
     projects: [
         {
             name: "Fact Checker",
-            description: "A python program that checks if a given statement is true or false. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc. Donec auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, vitae lacinia nunc nisl eget nunc.",
+            description: "A python program that checks if a given statement is true or false.",
             path: "http://localhost:8000/models/checkmark.obj",
             scale: 0.25,
             rotation: [0, 0, 0]
@@ -206,8 +206,8 @@ function Menu(){
         setTimeout(() => {
             text.innerHTML = projects.projects[currentState].name;
             description.innerHTML = projects.projects[currentState].description + "<span className='blink'>_</span>";
-            text.style = 'color: 0x00ff00 !important; font-size: 2rem; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color: transparent;';
-            description.style = 'color: 0x00ff00 !important; font-size: 1rem; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); background-color: transparent;';
+            text.style = 'font-size: 2rem; background-color: transparent; margin-top: 10%;';
+            description.style = 'font-size: 1rem; background-color: transparent;';
         }
         , 2000);
 
@@ -265,20 +265,19 @@ function Menu(){
         tip.style = 'opacity: 0; transition: 1s;';
         title.style = 'opacity: 0; transition: 1s;';
 
-        terminal.style = 'width: 80vw; height: 80vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 1s;';
+        terminal.style = 'width: 100vw; height: 100vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: 1s;';
     }
 
     function showElements(){
         let text = document.getElementById('text');
         let title = document.getElementById('title');
         let description = document.getElementById('description');
-        let terminal = document.getElementById('terminal');
         let left = document.getElementById('left');
         let right = document.getElementById('right');
         let tip = document.getElementById('tip');
 
         text.style = 'font-size: 2rem; background-color: transparent; margin-top: 10%;';
-        description.style = 'opacity: 1; transition: 1s; width: 100%; height: 100%;';
+        description.style = 'font-size: 1rem; background-color: transparent;';
         left.style = 'position: absolute; top: 50%; left: 10%; transform: translate(-50%, -50%); background-color: transparent; color: white; font-size: 2rem; border: none; outline: none;';
         right.style = 'position: absolute; top: 50%; right: 10%; transform: translate(50%, -50%); background-color: transparent; color: white; font-size: 2rem; border: none; outline: none;';    
         tip.style = 'opacity: 1; transition: 1s;';
@@ -288,7 +287,7 @@ function Menu(){
 
 
     function displayWebsite(){
-        let main = MoreWebsite();
+        let main = MoreWebsite(currentState);
     
         let terminal = document.getElementById('terminal-content');
         terminal.appendChild(main);

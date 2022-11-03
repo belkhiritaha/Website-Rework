@@ -1,13 +1,14 @@
-function MoreWebsite(){
-        // <div id="main" className="main">
-        //     <h1 id="more-title">This is a title</h1>
-        //     <div id="more-content">
-        //         <p className="more-text">This is a paragraph</p>
-        //         <p className="more-text">This is a paragraph</p>
-        //         <img src="https://picsum.photos/200/300" alt="random image" />
-        //     </div>
-        // </div>
-    
+let db = {};
+
+fetch("http://localhost:8000/websites/layout.json").then((res) => res.json()).then((data) => {
+    console.log(data);
+    // write to db
+    db = data;
+});
+
+
+function MoreWebsite(id){
+    let websiteToRender = db.websites[id];
     const main = document.createElement('div');
     main.id = 'main';
     main.className = 'main';
@@ -15,29 +16,38 @@ function MoreWebsite(){
     const title = document.createElement('h1');
     title.style = "margin-top: 10%";
     title.id = 'more-title';
-    title.textContent = 'This is a title';
-
-    const content = document.createElement('div');
-    content.id = 'more-content';
-
-    const paragraph1 = document.createElement('p');
-    paragraph1.className = 'more-text';
-    paragraph1.textContent = 'This is a paragraph';
-
-    const paragraph2 = document.createElement('p');
-    paragraph2.className = 'more-text';
-    paragraph2.textContent = 'This is a paragraph';
-
-    const image = document.createElement('img');
-    image.src = 'https://picsum.photos/200/300';
-    image.alt = 'random image';
-
-    content.appendChild(paragraph1);
-    content.appendChild(paragraph2);
-    content.appendChild(image);
+    title.textContent = websiteToRender.title;
 
     main.appendChild(title);
-    main.appendChild(content);
+
+    for (let i = 0; i < websiteToRender.layout.length; i++) {
+        let element = websiteToRender.layout[i];
+        let htmlElement;
+        if (element == 0){
+            htmlElement = document.createElement('p');
+            htmlElement.textContent = websiteToRender.content[i];
+        }
+
+        if (element == 1){
+            htmlElement = document.createElement('h1');
+            htmlElement.textContent = websiteToRender.content[i];
+        }
+
+        if (element == 2){
+            htmlElement = document.createElement('img');
+            htmlElement.src = websiteToRender.content[i];
+        }
+
+        if (element == 3){
+            htmlElement = document.createElement('a');
+            htmlElement.href = websiteToRender.content[i][1];
+            let linkImage = document.createElement('img');
+            linkImage.src = websiteToRender.content[i][0];
+            htmlElement.appendChild(linkImage);
+        }
+        
+        main.appendChild(htmlElement);
+    };
 
     return main;
 }
