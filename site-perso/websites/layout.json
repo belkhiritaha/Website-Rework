@@ -280,7 +280,7 @@
         {
             "title": "RedditTTS",
             "layout": [
-                0,1,0,0,1,0,0,1,0,0,0,2,1,0,1,0,0,0,1,0,0,2,3,0
+                0,1,0,0,1,0,0,1,0,0,0,2,1,0,0,0,1,0,0,2,3,0
             ],
             "content": [
                 "A bot that creates content for TikTok",
