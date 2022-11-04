@@ -9,6 +9,7 @@ fetch("http://localhost:8000/websites/layout.json").then((res) => res.json()).th
 
 function MoreWebsite(id){
     let websiteToRender = db.websites[id];
+    console.log(websiteToRender);
     const main = document.createElement('div');
     main.id = 'main';
     main.className = 'main';

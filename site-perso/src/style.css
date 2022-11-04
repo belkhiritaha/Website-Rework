@@ -12,12 +12,13 @@ body::after {
 #root {
     height: 80vh;
     margin-top: 15vh;
+    overflow-x: hidden !important;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Khula:700);
 
 .whoami {
-    font-size: 1.5em;
+    font-size: 100%;
     width: 80%;
     margin: auto;
 }

@@ -164,16 +164,16 @@ function Menu(){
     function slideRight(){
         // select by id
         let text = document.getElementById('text');
-        text.style = 'color: 0x00ff00 !important; font-size: 2rem; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color: transparent; animation: fadeOut 2s ease-in-out;';
+        text.style = 'margin-top: 10%; font-size: 2rem; background-color: transparent; animation: fadeOut 2s ease-in-out;';
         
         let description = document.getElementById('description');
-        description.style = 'color: 0x00ff00 !important; font-size: 1rem; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); background-color: transparent; animation: fadeOut 2s ease-in-out;';
+        description.style = 'font-size: 1rem; background-color: transparent; animation: fadeOut 2s ease-in-out;';
 
         setTimeout(() => {
             text.innerHTML = projects.projects[currentState].name;
-            description.innerHTML = projects.projects[currentState].description + "<span className='blink'>_</span>";
-            text.style = 'color: 0x00ff00 !important; font-size: 2rem; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color: transparent;';
-            description.style = 'color: 0x00ff00 !important; font-size: 1rem; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); background-color: transparent;';
+            description.innerHTML = projects.projects[currentState].description;
+            text.style = 'margin-top: 10%; font-size: 2rem; background-color: transparent;';
+            description.style = 'font-size: 1rem; background-color: transparent;';
         }
         , 2000);
 
@@ -198,15 +198,15 @@ function Menu(){
     function slideLeft(){
         // select by id
         let text = document.getElementById('text');
-        text.style = 'color: 0x00ff00 !important; font-size: 2rem; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); background-color: transparent; animation: fadeOut 2s ease-in-out;';
+        text.style = 'margin-top: 10%; font-size: 2rem; background-color: transparent; animation: fadeOut 2s ease-in-out;';
 
         let description = document.getElementById('description');
-        description.style = 'color: 0x00ff00 !important; font-size: 1rem; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); background-color: transparent; animation: fadeOut 2s ease-in-out;';
+        description.style = 'font-size: 1rem; background-color: transparent; animation: fadeOut 2s ease-in-out;';
 
         setTimeout(() => {
             text.innerHTML = projects.projects[currentState].name;
-            description.innerHTML = projects.projects[currentState].description + "<span className='blink'>_</span>";
-            text.style = 'font-size: 2rem; background-color: transparent; margin-top: 10%;';
+            description.innerHTML = projects.projects[currentState].description;
+            text.style = 'margin-top: 10%; font-size: 2rem; background-color: transparent; margin-top: 10%;';
             description.style = 'font-size: 1rem; background-color: transparent;';
         }
         , 2000);
@@ -292,6 +292,8 @@ function Menu(){
         let terminal = document.getElementById('terminal-content');
         terminal.appendChild(main);
 
+        main.style = "width: 80%; margin: auto; margin-top: 20%;";
+
         console.log(main);
     }
 
@@ -358,10 +360,20 @@ function Menu(){
             main.remove();
             // resize terminal
             let terminal = document.getElementById('terminal');
-            terminal.style = 'position: absolute; top: 70%; left: 30%; width: 40vw; height: 30vh; background-color: rgba(50, 50, 50, 0.5); color: white; font-family: monospace; font-size: 1rem; z-index: 100; text-align: center; transition: 1s;';
+            terminal.style = 'position: absolute; top: 70%; left: 10%; width: 80vw; height: 30vh; background-color: rgba(50, 50, 50, 0.5); color: white; font-family: monospace; font-size: 1rem; z-index: 100; text-align: center; transition: 1s;';
             showElements();
         }
-    }  
+    } 
+    
+    function expandTerminal(){
+        if (inAnimation == 0 && !viewMore){
+            let terminal = document.getElementById('terminal');
+            terminal.style = 'position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(50, 50, 50, 0.5); color: white; font-family: monospace; font-size: 1rem; z-index: 100; text-align: center; transition: 1s;';
+            hideElements();
+            exploreContent();
+            viewMore = true;
+        }
+    }
 
     // Key listener
     document.addEventListener('keydown', (event) => {
@@ -428,6 +440,7 @@ function Menu(){
                     width: 100vw;
                     height: 100vh;
                     margin-top: 0 !important;
+                    overflow: hidden !important;
                 }
 
                 body {
@@ -438,7 +451,7 @@ function Menu(){
                 html, body {
                     margin: 0;
                     height: 100%;
-                    overflow: hidden;
+                    overflow-x: hidden !important;
                 }
 
                 body::after {
@@ -465,8 +478,8 @@ function Menu(){
                 .terminal {
                     position: absolute;
                     top: 70%;
-                    left: 30%;
-                    width: 40vw;
+                    left: 10%;
+                    width: 80vw;
                     height: 30vh;
                     background-color: rgba(50, 50, 50, 0.5);
                     color: white;
@@ -521,7 +534,7 @@ function Menu(){
                     position: absolute;
                     top: 0;
                     left: 70%;
-                    width: 20%;
+                    width: 40%;
                     height: 10%;
                     background-color: rgba(30, 30, 30, 0.5);
                     color: white;
@@ -529,7 +542,24 @@ function Menu(){
                     font-size: 1rem;
                     overflow: hidden;
                     z-index: 100;
+                    pointer-events: none;
                 }
+
+                // if on mobile
+                @media only screen and (max-width: 600px) {
+                    .terminal {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100vw !important;
+                        height: 100vh;
+                        background-color: rgba(50, 50, 50, 0.5);
+                        color: white;
+                        font-family: monospace;
+                        font-size: 1rem;
+                        z-index: 100;
+                        text-align: center;
+                    }
                 
             `}
         </style>
@@ -540,6 +570,7 @@ function Menu(){
             <div className='terminal-top'>
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>Terminal</div>
                 <button id="exitButton" style={{ position: "absolute", top: "50%", left: "90%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }} onClick={exitTerminal}>X</button> 
+                <button id="exitButton" style={{ position: "absolute", top: "50%", left: "85%", transform: "translate(-50%,-50%)", backgroundColor: "transparent", border: "none", outline: "none" }} onClick={expandTerminal}>+</button> 
             </div>
             <div id='terminal-content' className='terminal-content'>
                 <p style={{ fontSize: "2rem", backgroundColor: "transparent", marginTop: "10%" }} id="text">{projects.projects[currentState].name}</p>
