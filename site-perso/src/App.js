@@ -14,7 +14,7 @@ function App() {
       return (
           <>
 
-              <div style={{ width: '100%', marginTop: 'auto' }} className='console-container'><span id='text'></span><div className='console-underscore' id='console'>&#95;</div></div>
+              <div style={{ width: '100%', marginTop: 'auto', fontSize: "300%", paddingBottom: "50%" }} className='console-container'><span id='text'></span><div className='console-underscore' id='console'>&#95;</div></div>
 
               <div className="whoami">
                   <Col>
