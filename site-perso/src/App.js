@@ -7,7 +7,7 @@ import Menu from './menu';
 import { useState } from 'react';
 
 function App() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     useConsole();
 
     if (!open) {

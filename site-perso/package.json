@@ -9,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.2",
+    "cors": "^2.8.5",
     "fs": "^0.0.1-security",
     "postprocessing": "^6.29.1",
     "react": "^18.2.0",
@@ -18,6 +19,7 @@
     "react-scripts": "5.0.1",
     "three": "^0.146.0",
     "three-effectcomposer": "^0.0.1",
+    "vhost": "^3.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

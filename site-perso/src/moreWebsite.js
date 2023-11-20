@@ -1,6 +1,6 @@
 let db = {};
 
-fetch("http://localhost:8000/websites/layout.json").then((res) => res.json()).then((data) => {
+fetch("https://api.belkhiri.dev/websites/layout.json").then((res) => res.json()).then((data) => {
     console.log(data);
     // write to db
     db = data;

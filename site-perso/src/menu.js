@@ -11,56 +11,56 @@ const projects = {
         {
             name: "Fact Checker",
             description: "A python program that checks if a given statement is true or false.",
-            path: "http://localhost:8000/models/checkmark.obj",
+            path: "https://api.belkhiri.dev/models/checkmark.obj",
             scale: 0.25,
             rotation: [0, 0, 0]
         },
         {
             name: "LoL Imposters",
             description: "A Discord bot that adds a fun twist to the popular game League of Legends.",
-            path: "http://localhost:8000/models/among us.obj",
+            path: "https://api.belkhiri.dev/models/among us.obj",
             scale: 0.015,
             rotation: [0, 0, 0]
         },
         {
             name: "SDL2 Raycasting",
             description: "A raycasting engine written in C using SDL2.",
-            path: "http://localhost:8000/models/Arrow.obj",
+            path: "https://api.belkhiri.dev/models/Arrow.obj",
             scale: 0.05,
             rotation: [1, 0, 0]
         },
         {
             name: "ZZ1 Project",
             description: "The final project for the ZZ1 year at ISIMA.",
-            path: "http://localhost:8000/models/RacquetMario.obj",
+            path: "https://api.belkhiri.dev/models/RacquetMario.obj",
             scale: 0.4,
             rotation: [0, 0, 1]
         },
         {
             name: "ZZ2 Project",
             description: "The final project for the ZZ2 year at ISIMA.",
-            path: "http://localhost:8000/models/cloud.obj",
+            path: "https://api.belkhiri.dev/models/cloud.obj",
             scale: 0.007,
             rotation: [0, 0, 0]
         },
         {
             name: "Instagram Bot",
             description: "A bot that promotes Instagram e-commerce accounts.",
-            path: "http://localhost:8000/models/like.obj",
+            path: "https://api.belkhiri.dev/models/like.obj",
             scale: 0.15,
             rotation: [3, 0, 0]
         },
         {
             name: "TikTok/Reddit Bot",
             description: "A bot that turns popular Reddit threads into TTS TikTok videos.",
-            path: "http://localhost:8000/models/reddit.obj",
+            path: "https://api.belkhiri.dev/models/reddit.obj",
             scale: 0.1,
             rotation: [0, 0, 0]
         },
         {
-            name: "Kamagoshark",
+            name: "Kamgosridina ;)",
             description: "A 3D game made in JavaSript.",
-            path: "http://localhost:8000/models/shark.obj",
+            path: "https://api.belkhiri.dev/models/shark.obj",
             scale: 1,
             rotation: [0, 0, 0]
         }
