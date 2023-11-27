@@ -58,7 +58,7 @@ const projects = {
             rotation: [0, 0, 0]
         },
         {
-            name: "Kamgosridina ;)",
+            name: "sridina ;)",
             description: "A 3D game made in JavaSript.",
             path: "https://api.belkhiri.dev/models/shark.obj",
             scale: 1,

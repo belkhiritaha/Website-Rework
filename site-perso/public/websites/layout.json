@@ -1,0 +1,669 @@
+{
+    "websites": [
+        {
+            "title": "Fact Checker",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A program that checks if an information is fake or not"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "Given a statement that illustrates a relationship between two entities, the program checks if the statement is true or false. It does so by building a knowledge graph, and looking for the shortest path between the two entities. A rather long path corresponds to a false statement, while a short path corresponds to a true statement."
+                },
+                {
+                    "type": "img",
+                    "content": "img/Figure-2-example-of-a-knowledge-graph.png"
+                },
+                {
+                    "type": "p",
+                    "content": "On the example we can see that Barack Obama is directly linked to Michelle Obama, therefore, any statement directly linking those two entities is likely to be true."
+                },
+                {
+                    "type": "h2",
+                    "content": "ALGORITHM"
+                },
+                {
+                    "type": "p",
+                    "content": "We start with the statement's first entity as the first node to our graph. We then make SQL queries from the Wikidata database to get all the entities that are linked to our first entity. We have now built a fist layer of entities that surrounds our first node."
+                },
+                {
+                    "type": "img",
+                    "content": "img/1stlayer.png"
+                },
+                {
+                    "type": "p",
+                    "content": "We reiterate this process for the stqtement's second entity, and we get a second layer of entities surrounding our second node. We reiterate this process for all the nodes on the first layer of entities, second layer, third... until the two separate graphs we're building connect. This process is not garanteed to terminate, so we must set a limit on the number of iterations upon which, we can say that the statement is likely to be false, since there is no obvious link between the two entities."
+                },
+                {
+                    "type": "p",
+                    "content": "The resulting knowledge graph looks like this:"
+                },
+                {
+                    "type": "img",
+                    "content": "img/kg.png"
+                },
+                {
+                    "type": "h2",
+                    "content": "SHORTEST PATH"
+                },
+                {
+                    "type": "p",
+                    "content": "In this graph, we look for the shortest path that connects the two entities. And given the weight of each edge, we can calculate the Truth Value of the statement."
+                },
+                {
+                    "type": "img",
+                    "content": "img/pathexmpl.png"
+                },
+                {
+                    "type": "h2",
+                    "content": "TRUTH VALUE"
+                },
+                {
+                    "type": "p",
+                    "content": "The Truth Value of a statement is defined as such:"
+                },
+                {
+                    "type": "img",
+                    "content": "img/truthvalue.png"
+                },
+                {
+                    "type": "p",
+                    "content": "Where K is a calibration function, and N is the paths length (sum of nodes weights)"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/Fact-checker"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "LoL Imposters",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A fun discord bot to spice up your LoL games"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot is designed to be used in a discord server, and it's main purpose is to spice up your LoL games. It does so by generating random events that can happen during a game, and it's up to the players to decide what to do with it."
+                },
+                {
+                    "type": "h2",
+                    "content": "HOW TO PLAY"
+                },
+                {
+                    "type": "p",
+                    "content": "First, you need to invite the bot on your server, and then you can start a game by typing !start. The bot will pick 2 players at random from your channel to be imposters, and will then send through DMs random missions for the Imposters to execute throughout the game."
+                },
+                {
+                    "type": "h2",
+                    "content": "COOL FEATURE"
+                },
+                {
+                    "type": "p",
+                    "content": "I found debugging the code a bit frustrating as you need to restart the bot each time you make a change to the code, so I implemented a way to execute commands and see their output through Discord's chat. This way, I can test my code without having to restart the bot each time."
+                },
+                {
+                    "type": "h2",
+                    "content": "GAME COMMANDS"
+                },
+                {
+                    "type": "p",
+                    "content": "reset: Resets all variables, roles, and clears arrays"
+                },
+                {
+                    "type": "p",
+                    "content": "status: Prints the status of lobby (number of players currently in the lobby)"
+                },
+                {
+                    "type": "p",
+                    "content": "addme: Adds a player to the lobby"
+                },
+                {
+                    "type": "p",
+                    "content": "rolepls: Sends a DM to the player that includes his role"
+                },
+                {
+                    "type": "p",
+                    "content": "gamestart: Starts timer for missions"
+                },
+                {
+                    "type": "p",
+                    "content": "gamewon: Announces that game is done and starts voting phase"
+                },
+                {
+                    "type": "h2",
+                    "content": "DEBUG COMMANDS"
+                },
+                {
+                    "type": "p",
+                    "content": "print <python variable>: prints (to discord chat) the current value of any variable within the environnement"
+                },
+                {
+                    "type": "p",
+                    "content": "Example: - print players >>>> ['Sorry lm BIind','NotToxicBipolar','iSultan','Sondo45','Lost Astronaut']"
+                },
+                {
+                    "type": "p",
+                    "content": "do for <int> <python command>: basically a 'for loop' where the loop variable is 'i' by default"
+                },
+                {
+                    "type": "p",
+                    "content": "Example: do for 1 count = 0; do for 10 count+=1; print count >>>> 10"
+                },
+                {
+                    "type": "p",
+                    "content": "Also note that anything that is printed, or processed by the 'do for' loop is automatically added to a list called 'buffer', hence comes the following commands"
+                },
+                {
+                    "type": "p",
+                    "content": "clear buffer: clears the buffer (duh)"
+                },
+                {
+                    "type": "p",
+                    "content": "buffer: prints the buffer"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/DiscordBot"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "Taha's Website",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "This website"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "I wanted to make a website that is both a portfolio and a blog. I also wanted to make it from scratch, without using any framework or library. I wanted to make it as simple as possible, and I wanted to make it look good on mobile."
+                },
+                {
+                    "type": "h2",
+                    "content": "DESIGN"
+                },
+                {
+                    "type": "p",
+                    "content": "I wanted to make it look like a terminal, so I used a monospace font and a dark theme. I also wanted to make it look like a blog, so I used a lot of text and images."
+                },
+                {
+                    "type": "h2",
+                    "content": "TECHNOLOGIES"
+                },
+                {
+                    "type": "p",
+                    "content": "I used HTML, CSS, and JavaScript to make this website. I also used a lot of JSON files to store the content of the website."
+                },
+                {
+                    "type": "h2",
+                    "content": "CONTENT"
+                },
+                {
+                    "type": "p",
+                    "content": "The content of the website is stored in JSON files. Each JSON file represents a page, and each page is made of sections. Each section is made of elements. Each element can be a paragraph, an image, a link, or a list."
+                },
+                {
+                    "type": "p",
+                    "content": "This is the JSON file that represents this page:"
+                },
+                {
+                    "type": "img",
+                    "content": "img/json.png"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/website"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "SDL2 Raycasting",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A 3D raycasting engine written in C using SDL2"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "The game is a 3d shooter where the player can move around and shoot kawai anime characters (yes it's cringe)"
+                },
+                {
+                    "type": "img",
+                    "content": "img/raycastinggame.png"
+                },
+                {
+                    "type": "h2",
+                    "content": "RAYCASTING"
+                },
+                {
+                    "type": "p",
+                    "content": "The goal is to simulate a 3D world when the world is actually stored in a 2D array"
+                },
+                {
+                    "type": "img",
+                    "content": "img/raycastingmap2D.png"
+                },
+                {
+                    "type": "p",
+                    "content": "We can achieve that illusion by casting multiple rays in the players field of view. Given the distance that each ray travels before hitting a wall, we get an estimate of the distance between the player and the walls around."
+                },
+                {
+                    "type": "p",
+                    "content": "We draw the walls according to this distance we calculated, giving this sweet sweet DOOM-like 3D look"
+                },
+                {
+                    "type": "img",
+                    "content": "img/25231.png"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/raycasting"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "Projet Apprentissage Par Renforcement",
+            "layout": [
+                {
+                    "type": "h2",
+                    "content": "PRÉSENTATION DU SUJET"
+                },
+                {
+                    "type": "p",
+                    "content": "Le projet se décompose en deux phases, correspondant chacune approximativement à une semaine de travail. La première phase est commune à tous les groupes et met en place des outils permettant de manipuler des images et d'interagir avec l'utilisateur. Cette phase est ponctuée de petits exercices assez libres où vous devrez démontrer votre maîtrise des points abordés en individuel et se termine par la création d'un petit jeu d'arcade en groupe qui mettra de plus en œuvre un processus Markovien. La seconde phase, plus spécifique à chaque groupe, consiste à réinvestir les acquis de la première phase afin de créer un prototype de votre propre « jeu vidéo » respectant la thématique du projet."
+                },
+                {
+                    "type": "h2",
+                    "content": "GROUPE"
+                },
+                {
+                    "type": "p",
+                    "content": "Numéro 5 avec Taha BELKHIRI, Marc BERET et Antoine MEYER."
+                },
+                {
+                    "type": "h2",
+                    "content": "LIENS"
+                },
+                {
+                    "type": "p",
+                    "content": "Git : https://gitlab.isima.fr/maberet/ProjetZZ1 et Trello : https://trello.com/b/YGhNeYX3/projet-apprentissage-par-renforcement"
+                },
+                {
+                    "type": "h2",
+                    "content": "TRAVAUX DEMANDÉS"
+                },
+                {
+                    "type": "p",
+                    "content": "X fenêtré : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Pavé de serpents : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Jeu de la vie : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Animer des sprites : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Chef d’œuvre : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Jeu avec apprentissage par renforcement : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Site Web : terminé. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "JEU DE LA VIE : TERMINÉ. ✔️"
+                },
+                {
+                    "type": "p",
+                    "content": "Tous les membres du groupe ont fait la base du jeu de la vie (affichage de base, logique, etc) et nous avons ensuite prit le meilleur de chacun pour la version finale :"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Taha a fait la grille torique, la détection des cycles et des états stables."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Marc a fait la sauvegarde dans un fichier."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Antoine a fait le chargement d'un fichier et le redimensionnement de la grille en cours de jeu (fonctionnalité non présente dans le jeu final car pleine écran)."
+                },
+                {
+                    "type": "p",
+                    "content": "CHEF D’ŒUVRE : TERMINÉ. ✔️"
+                },
+                {
+                    "type": "h2",
+                    "content": "Objectifs du chef d’œuvre "
+                },
+                {
+                    "type": "p",
+                    "content": "Mettre en œuvre tout ce qui a été vu sur la SDL, en créant un mini jeu. Nous proposons un jeu totalement différent (validé par l'enseignant). Ce n'est qu'un exercice et il ne faudrait pas lui accorder plus d'une journée : nous avons passé 2 jours sur cet exercice. Notre jeu mets en œuvre une chaîne de Markov afin de gérer le comportement d'au moins un élément du jeu (le feu)."
+                },
+                {
+                    "type": "p",
+                    "content": "But du jeu :"
+                },
+                {
+                    "type": "p",
+                    "content": "Empêcher la propagation du feu en éteignant les flammes avec vos seaux d'eau."
+                },
+                {
+                    "type": "p",
+                    "content": "Chaîne de Markov :"
+                },
+                {
+                    "type": "p",
+                    "content": "Notre chaîne de Markov se déploie sur le comportement du feu. Il y a 5 états pour un feu :"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ s'éteint"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ étincelle"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ petit feu"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ feu fort"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ se propage"
+                },
+                {
+                    "type": "p",
+                    "content": "Un tableau de Markov pour l'évolution du feu peut être comme ceci :"
+                },
+                {
+                    "type": "img",
+                    "content": "img/25231.png"
+                },
+                {
+                    "type": "h2",
+                    "content": "Organisation de l'équipe :"
+                },
+                {
+                    "type": "p",
+                    "content": "Nous avons travaillé avec Git et l'utilisation des branches. Nous avons rapidement séparé le travail comme suit :"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Taha Belkhiri : toute la partie visuelle (carte, assets, menu, dessins, implémentations) et les animations."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Marc Beret : structure et mécanique du feu; chaîne de Markov; propagation du feu."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Antoine Meyer : logique du personnage (collisions); gestion du clic et de ses actions possibles."
+                },
+                {
+                    "type": "p",
+                    "content": "JEU AVEC APPRENTISSAGE PAR RENFORCEMENT : TERMINÉ ✔️"
+                },
+                {
+                    "type": "img",
+                    "content": "img/25231.png"
+                },
+                {
+                    "type": "h2",
+                    "content": "🎾 Raison d'être du jeu"
+                },
+                {
+                    "type": "p",
+                    "content": "Réinvestir les acquis de la première phase afin de créer un prototype de notre propre « jeu vidéo » respectant la thématique du projet : apprentissage par renforcement ou Q-learning, méthode « essai-erreur »."
+                },
+                {
+                    "type": "h2",
+                    "content": "🎾 Principe du jeu"
+                },
+                {
+                    "type": "p",
+                    "content": "Un match de tennis sans rebonds. Un joueur humain affronte une intelligence artificielle entrainée à renvoyer la balle."
+                },
+                {
+                    "type": "h2",
+                    "content": "🎾 Visuel du jeu"
+                },
+                {
+                    "type": "p",
+                    "content": "Le raycasting est une technique de rendu permettant de créer une perspective 3D dans une carte 2D. Nous avons décidé de faire tout le rendu visuel de notre jeu en 3D en utilisant cette technique. Cela rajoute un challenge mathématique, le raycasting fonctionnant avec beaucoup de trigonométrie."
+                },
+                {
+                    "type": "p",
+                    "content": "Organisation de l'équipe :"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Taha Belkhiri : toute la partie visuelle (rendu 3D, carte, assets) et plug de l'IA."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Marc Beret : mathématique des trajectoires; création et entrainements de l'IA grâce à l'apprentissage par renforcement."
+                },
+                {
+                    "type": "p",
+                    "content": "➤ Antoine Meyer : logique des acteurs (collisions, déplacements); rendu 2D et ses courbes; page web."
+                },
+                {
+                    "type": "h2",
+                    "content": "🎾 Idées non réalisées et pistes d'améliorations"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ menu"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ score"
+                },
+                {
+                    "type": "p",
+                    "content": "➤ implémenter les rebonds"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/ProjetZZ1"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "Projet aZZure",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "Coming soon..."
+                }
+            ]
+        },
+        {
+            "title": "Instagram Bot",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A bot that promotes e-commerces accounts on Instagram"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "Given a set of accounts, this bot will log in to each account and post comments that help promotes your e-commerce page on popular/related hashtags. The bot keeps track of the number of posts made and will stop after reaching the maximum number of posts. Also, it will not comment on previously commented posts. The bot also comes with a basic Tkinter GUI that allows you to change the hashtags, the number of posts to make, and the time between posts."
+                },
+                {
+                    "type": "h2",
+                    "content": "SELENIUM"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot uses Selenium to log in to each account and post comments. Selenium is a web browser automation tool that allows you to automate web browser actions. It is a very powerful tool that can be used to automate almost any web browser action. It is also very easy to use and has a lot of documentation."
+                },
+                {
+                    "type": "h2",
+                    "content": "ACCOUNT CREATION"
+                },
+                {
+                    "type": "p",
+                    "content": "There's also a semi automated account creation feature that will make creating account easier (T.O.S friendly)."
+                },
+                {
+                    "type": "h2",
+                    "content": "GUI"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot comes with a basic Tkinter GUI that allows you to change the hashtags, the number of posts to make, and the time between posts."
+                },
+                {
+                    "type": "img",
+                    "content": "img/25231.png"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/InstagramBot"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "RedditTTS",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A bot that reads Reddit posts out loud"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "Given a subreddit, the bot will read the top posts out loud. It will also read the comments of each post. It will then move on to the next post, and so on. The bot also comes with a basic Tkinter GUI that allows you to change the subreddit, the number of posts to read, and the time between posts."
+                },
+                {
+                    "type": "h2",
+                    "content": "SPEECH RECOGNITION"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot uses the SpeechRecognition library to listen to the user's voice and convert it to text. It then uses the text to change the subreddit, the number of posts to read, and the time between posts."
+                },
+                {
+                    "type": "h2",
+                    "content": "TEXT TO SPEECH"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot uses the pyttsx3 library to read the posts out loud."
+                },
+                {
+                    "type": "h2",
+                    "content": "GUI"
+                },
+                {
+                    "type": "p",
+                    "content": "The bot comes with a basic Tkinter GUI that allows you to change the subreddit, the number of posts to read, and the time between posts."
+                },
+                {
+                    "type": "img",
+                    "content": "img/25231.png"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/RedditTTS"],
+                    "href": "(Source code)"
+                }
+            ]
+        },
+        {
+            "title": "Sridina",
+            "layout": [
+                {
+                    "type": "p",
+                    "content": "A 3D game written in 100% JavaScript during a GameJam"
+                },
+                {
+                    "type": "h2",
+                    "content": "CONCEPT"
+                },
+                {
+                    "type": "p",
+                    "content": "The theme being: abyZZ, we decided to make a game where you play as a shark that eats other fish and explores the abyss."
+                },
+                {
+                    "type": "p",
+                    "content": "The game is written in 100% JavaScript and uses the Three.js library to render the 3D graphics."
+                },
+                {
+                    "type": "h2",
+                    "content": "GAMEPLAY"
+                },
+                {
+                    "type": "p",
+                    "content": "The game is a 3D endless runner where you play as a shark that eats other fish and explores the abyss."
+                },
+                {
+                    "type": "p",
+                    "content": "The game is played with the arrow keys. The left and right arrows control the shark's rotation and the up arrow controls the shark's speed."
+                },
+                {
+                    "type": "h2",
+                    "content": "LINK TO PLAY"
+                },
+                {
+                    "type": "p",
+                    "content": "game is available here perso.isima.fr/~tabelkhiri/kamagoshark"
+                },
+                {
+                    "type": "a",
+                    "content": ["img/25231.png", "github.com/belkhiritaha/Wireshark-the-game-"],
+                    "href": "(Source code)"
+                }
+            ]
+        }
+    ]
+}
